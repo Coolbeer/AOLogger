@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>859</width>
+    <height>571</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Tab 1</string>
+       </attribute>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Start</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>80</y>
+          <width>731</width>
+          <height>331</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Settings</string>
+       </attribute>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>741</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>C:\Users\Administrator\AppData\Local\Funcom\Anarchy Online\cd94ae0c\Anarchy Online\Prefs\coolbeer\Char322707777\Chat\Windows\Window5\Log.txt</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>50</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Cratectorate</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>859</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuCharacter">
+    <property name="title">
+     <string>Characters</string>
+    </property>
+    <addaction name="actionAdd_Character"/>
+    <addaction name="actionRemove_Character"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete_Logfile"/>
+    <addaction name="actionDelete_All_Logfiles"/>
+    <addaction name="separator"/>
+   </widget>
+   <addaction name="menuCharacter"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAdd_Character">
+   <property name="text">
+    <string>Add Character</string>
+   </property>
+  </action>
+  <action name="actionRemove_Character">
+   <property name="text">
+    <string>Remove Character</string>
+   </property>
+  </action>
+  <action name="actionDelete_Logfile">
+   <property name="text">
+    <string>Delete Logfile</string>
+   </property>
+  </action>
+  <action name="actionDelete_All_Logfiles">
+   <property name="text">
+    <string>Delete All Logfiles</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
