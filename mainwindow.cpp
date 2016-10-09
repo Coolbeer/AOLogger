@@ -19,6 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::updateCaption(void)
 {
+	//comment
     if(!inFile.isOpen())
     {
         ui->label->setText("Not Open");
