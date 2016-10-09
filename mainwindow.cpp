@@ -6,7 +6,7 @@
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    //another comment
     QTimer *timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(updateCaption()));
     timer->start(1000);
