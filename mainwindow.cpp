@@ -29,6 +29,8 @@ void MainWindow::updateCaption(void)
     ui->label->setText("Open");
 
     QString hopp = inFile.readLine();
+    if(!hopp.isEmpty())
+        theLogParser.parseLine(hopp.toStdString());
     ui->label->setText(ui->label->text() + hopp);
 }
 
