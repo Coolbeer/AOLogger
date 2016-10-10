@@ -1,6 +1,7 @@
 #ifndef T_PARSER_H
 #define T_PARSER_H
 
+#include <string>
 
 class t_parser
 {
