@@ -36,6 +36,7 @@ void MainWindow::on_pushButton_clicked()
 {
     theLogParser.parseLine("[\"#000000004200000a#\",\"Other hit by other\",\"\",1475957541]Zagam hit Corrupted Hiisi Berserker for 2298 points of energy damage.");
     theLogParser.parseLine("[\"#0000000042000008#\",\"You hit other\",\"\",1475957540]You hit The Beast for 4274 points of poison damage. Critical hit!");
+    theLogParser.parseLine("[\"#0000000042000012#\",\"Your misses\",\"\",1475957537]You tried to hit The Beast, but missed!");
 /*
     if(inFile.isOpen())
         inFile.close();

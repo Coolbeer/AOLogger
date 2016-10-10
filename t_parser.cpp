@@ -21,28 +21,30 @@ void t_parser::parseLine(const std::string &logLine)
         timestamp = match.captured(2).toInt();
         message = match.captured(3);
 
-        for (int i = 0; i <= match.lastCapturedIndex(); ++i) {
-            std::cout << i << ": " << timestamp << " - " << channel.toStdString() << " - " << message.toStdString() << std::endl;
-        }
         if (channel=="Other hit by other"||channel=="You hit other")
         {
-                QRegularExpression missMessage("(?<source>.+) tried to hit (?<target>.+) , but missed.");
-                QRegularExpressionMatch missMatch = missMessage.match(message);
-                //if (!missMatch.hasMatch())
-                QRegularExpression hitMessage("(?<source>.+) hit (?<target>.+) for (?<damage>\\d+) points of (?<damageType>\\w+) damage.(?<hitType>.*)");
-                QRegularExpressionMatch hitMatch = hitMessage.match(message);
-                for (int i = 0; i <= hitMatch.lastCapturedIndex(); ++i) {
-                    std::cout << i << ": " << hitMatch.captured((i)).toStdString() << std::endl;
-                }
-                source = hitMatch.captured("source");
-                target = hitMatch.captured("target");
-                value = hitMatch.captured("damage").toInt();
-                damageType = hitMatch.captured("damageType");
+            QRegularExpression expression("(?<source>.+) hit (?<target>.+) for (?<damage>\\d+) points of (?<damageType>\\w+) damage.(?<hitType>.*)");
+            QRegularExpressionMatch match = expression.match(message);
+            source = match.captured("source");
+            target = match.captured("target");
+            value = match.captured("damage").toInt();
+            damageType = match.captured("damageType");
 
             if (source == "You")
                 source = player;
+
+            std::cout << source.toStdString() << " hit " << target.toStdString() << " for " << value << " points of " << damageType.toStdString() << " damage" << std::endl;
         }
-        std::cout << source.toStdString() << " hit " << target.toStdString() << " for " << value << " points of " << damageType.toStdString() << " damage" << std::endl;
+        if (channel=="Your misses"){
+            QRegularExpression expression("You tried to hit (?<target>.+), but missed.");
+            QRegularExpressionMatch match = expression.match(message);
+
+            source = player;
+            target = match.captured("target");
+
+            std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
+
+        }
 
     }
 
