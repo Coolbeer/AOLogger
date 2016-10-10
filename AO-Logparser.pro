@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     t_entity.cpp \
-    t_damage.cpp
+    t_damage.cpp \
+    t_parser.cpp
 
 HEADERS  += mainwindow.h \
     t_entity.h \
-    t_damage.h
+    t_damage.h \
+    t_parser.h
 
 FORMS    += mainwindow.ui
