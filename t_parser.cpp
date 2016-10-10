@@ -2,18 +2,22 @@
 
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
-#include <iostream>
+#include <QDebug>
 
 t_parser::t_parser()
 {
-
 }
+
 
 void t_parser::parseLine(const std::string &logLine)
 {
-    std::cout << logLine << std::endl;
-
+    //Regular expression to find time stamp and channel
     QRegularExpression timeChannelRegex(".+\"(.+)\",\"\",(\\d{10})](.+)");
+
+    //Event spesific regexes
+    QRegularExpression hitTargetRegex("(?<source>.+) hit (?<target>.+) for (?<damage>\\d+) points of (?<damageType>\\w+) damage.(?<hitType>.*)");
+    QRegularExpression missedRegex("You tried to hit (?<target>.+), but missed.");
+
     QRegularExpressionMatch match = timeChannelRegex.match(QString::fromStdString(logLine));
 
     if (match.hasMatch()){
@@ -23,29 +27,33 @@ void t_parser::parseLine(const std::string &logLine)
 
         if (channel=="Other hit by other"||channel=="You hit other")
         {
-            QRegularExpression expression("(?<source>.+) hit (?<target>.+) for (?<damage>\\d+) points of (?<damageType>\\w+) damage.(?<hitType>.*)");
-            QRegularExpressionMatch match = expression.match(message);
+            QRegularExpressionMatch match = hitTargetRegex.match(message);
             source = match.captured("source");
             target = match.captured("target");
             value = match.captured("damage").toInt();
             damageType = match.captured("damageType");
+            isCritical = match.captured("hitType")==" Critical hit!";
+            isGlancing = match.captured("hitType")==" Glancing hit!";
 
+            //Replace "You" with player name.
             if (source == "You")
                 source = player;
 
-            std::cout << source.toStdString() << " hit " << target.toStdString() << " for " << value << " points of " << damageType.toStdString() << " damage" << std::endl;
+            qDebug() << source << "hit" << target << "for" << value << "points of" << damageType << "damage";
         }
-        if (channel=="Your misses"){
-            QRegularExpression expression("You tried to hit (?<target>.+), but missed.");
-            QRegularExpressionMatch match = expression.match(message);
+        else if (channel=="Your misses"){
+            QRegularExpressionMatch match = missedRegex.match(message);
 
             source = player;
             target = match.captured("target");
 
-            std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
+            qDebug() << source << "missed" << target;
 
         }
-
+        else
+        {
+            qDebug() << QString::fromStdString(logLine);
+        }
     }
 
 }

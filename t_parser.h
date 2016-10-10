@@ -10,6 +10,7 @@ public:
     t_parser();
     void parseLine(const std::string &logLine);
 
+private:
     QString player = "Player";
     QString channel;
     uint64_t timestamp;
