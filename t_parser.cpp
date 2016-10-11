@@ -4,6 +4,7 @@
 #include <QRegularExpressionMatch>
 #include <QDebug>
 
+
 t_parser::t_parser()
 {
 }
@@ -52,7 +53,7 @@ void t_parser::parseLine(const std::string &logLine)
         }
         else
         {
-            qDebug() << QString::fromStdString(logLine);
+            qWarning() << "Unparsed log line:" << QString::fromStdString(logLine);
         }
     }
 
