@@ -6,7 +6,6 @@
 
 t_parser::t_parser()
 {
-
 }
 
 
@@ -48,6 +47,7 @@ void t_parser::parseLine(const std::string &logLine)
             source = player;
             target = match.captured("target");
 
+<<<<<<< HEAD
             qDebug() << source << "missed" << target;
 
         }
@@ -55,6 +55,9 @@ void t_parser::parseLine(const std::string &logLine)
         {
             qDebug() << QString::fromStdString(logLine);
         }
+=======
+            std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
+        }
+>>>>>>> master
     }
-
 }
