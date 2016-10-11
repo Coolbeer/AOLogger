@@ -1,8 +1,30 @@
 #include "t_damage.h"
 
+#include <iostream>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
+
 t_damage::t_damage()
 {
 
+}
+
+t_damage::t_damage(uint32_t timestamp, std::string message)
+{
+    QRegularExpression hitTargetRegex("(?<source>.+) hit (?<target>.+) for (?<damage>\\d+) points of (?<damageType>\\w+) damage.\\s*(?<hitType>\\w*)");
+    QRegularExpressionMatch match = hitTargetRegex.match(QString::fromStdString(message));
+
+    //Replace "You" with player name.
+
+    this->setSource(match.captured("source").toStdString());
+    this->setTarget(match.captured("target").toStdString());
+    this->setTimeStamp(timestamp);
+    this->setDamageValue(match.captured("damage").toInt());
+    this->setDamageType(match.captured("damageType").toStdString());
+    this->setHitType(match.captured("hitType").toStdString());
+
+    if (this->getSource() == "You")
+        this->setSource("player");
 }
 
 k_event::k_type t_damage::type(void)
@@ -50,12 +72,14 @@ void t_damage::setDamageType(const std::string &damType)
 
 void t_damage::setHitType(const std::string &hitType)
 {
-    if(hitType == "normal")
-        hType = k_hit::normal;
-    else if(hitType == "glancing")
+    std::cout << "\"" << hitType << "\"" << std::endl;
+    if(hitType == "Glancing")
         hType = k_hit::glancing;
-    else if(hitType == "critical")
+    else if(hitType == "Critical")
         hType = k_hit::critical;
     else if(hitType == "missed")
         hType = k_hit::missed;
+    else
+        hType = k_hit::normal;
+
 }

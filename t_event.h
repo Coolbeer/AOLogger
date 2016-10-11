@@ -5,7 +5,7 @@
 
 namespace k_event
 {
-    enum k_type { damage, heal };
+    enum k_type { damage, heal, loot, deleteItem, error };
 }
 
 class t_event
