@@ -1,3 +1,4 @@
+
 #-------------------------------------------------
 #
 # Project created by QtCreator 2016-10-04T23:13:53
@@ -16,11 +17,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     t_entity.cpp \
     t_damage.cpp \
-    t_parser.cpp
+    t_parser.cpp \
+    t_entities.cpp
 
 HEADERS  += mainwindow.h \
     t_entity.h \
     t_damage.h \
-    t_parser.h
+    t_parser.h \
+    t_entities.h
 
 FORMS    += mainwindow.ui
