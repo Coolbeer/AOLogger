@@ -5,6 +5,11 @@ t_damage::t_damage()
 
 }
 
+k_event::k_type t_damage::type(void)
+{
+    return k_event::damage;
+}
+
 void t_damage::setTimeStamp(const uint64_t &tStamp)
 {
     timeStamp = tStamp;
