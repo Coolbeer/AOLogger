@@ -58,6 +58,6 @@ void t_parser::parseLine(const std::string &logLine)
 =======
             std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
         }
->>>>>>> refs/remotes/origin/master
+>>>>>>> master
     }
 }
