@@ -23,13 +23,11 @@ class t_damage : public t_event
         k_event::k_type type(void);
         void setTimeStamp(const uint64_t &tStamp);
         void setDamageValue(const uint32_t &dVal);
-        void setVictim(const std::string &vic);
         void setDamageType(const std::string &damType);
         void setHitType(const std::string &hitType);
 
         uint64_t timeStamp = 0;
         uint32_t value = 0;
-        std::string victim = "";
         k_dmg::type dType = k_dmg::unknown;
         k_hit::type hType = k_hit::normal;
 };
