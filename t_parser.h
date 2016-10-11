@@ -25,7 +25,6 @@ private:
     bool isCritical;
     bool isGlancing;
 
-
 };
 
 #endif // T_PARSER_H
