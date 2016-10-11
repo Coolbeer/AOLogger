@@ -4,6 +4,8 @@
 #include <cstdint>
 #include <string>
 
+#include "t_event.h"
+
 namespace k_dmg
 {
     enum type{ melee, projectile, energy, disease, chemical, radiation, cold, fire, fling, burst, fullAuto, unknown };
@@ -14,10 +16,11 @@ namespace k_hit
     enum type{ normal, glancing, critical, missed };
 }
 
-class t_damage
+class t_damage : public t_event
 {
     public:
         t_damage();
+        k_event::k_type type(void);
         void setTimeStamp(const uint64_t &tStamp);
         void setDamageValue(const uint32_t &dVal);
         void setVictim(const std::string &vic);
