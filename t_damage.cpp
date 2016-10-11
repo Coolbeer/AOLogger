@@ -20,11 +20,6 @@ void t_damage::setDamageValue(const uint32_t &dVal)
     value = dVal;
 }
 
-void t_damage::setVictim(const std::string &vic)
-{
-    victim = vic;
-}
-
 void t_damage::setDamageType(const std::string &damType)
 {
     if(damType == "melee")
