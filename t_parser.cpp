@@ -6,7 +6,6 @@
 
 t_parser::t_parser()
 {
-
 }
 
 
