@@ -20,6 +20,7 @@ class t_damage : public t_event
 {
     public:
         t_damage();
+        t_damage(uint32_t, std::string);
         k_event::k_type type(void);
         void setTimeStamp(const uint64_t &tStamp);
         void setDamageValue(const uint32_t &dVal);

@@ -1,6 +1,8 @@
 #ifndef T_PARSER_H
 #define T_PARSER_H
 
+#include "t_event.h"
+
 #include <string>
 #include <QString>
 
@@ -8,7 +10,7 @@ class t_parser
 {
 public:
     t_parser();
-    void parseLine(const std::string &logLine);
+    t_event* parseLine(const std::string &logLine);
 
 private:
     QString player = "Player";

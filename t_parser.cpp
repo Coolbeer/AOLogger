@@ -1,22 +1,22 @@
 #include "t_parser.h"
+#include "t_damage.h"
 
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
 #include <QDebug>
-
+#include <iostream>
 
 t_parser::t_parser()
 {
 }
 
 
-void t_parser::parseLine(const std::string &logLine)
+t_event* t_parser::parseLine(const std::string &logLine)
 {
     //Regular expression to find time stamp and channel
     QRegularExpression timeChannelRegex(".+\"(.+)\",\"\",(\\d{10})](.+)");
 
     //Event spesific regexes
-    QRegularExpression hitTargetRegex("(?<source>.+) hit (?<target>.+) for (?<damage>\\d+) points of (?<damageType>\\w+) damage.(?<hitType>.*)");
     QRegularExpression missedRegex("You tried to hit (?<target>.+), but missed.");
 
     QRegularExpressionMatch match = timeChannelRegex.match(QString::fromStdString(logLine));
@@ -28,33 +28,26 @@ void t_parser::parseLine(const std::string &logLine)
 
         if (channel=="Other hit by other"||channel=="You hit other")
         {
-            QRegularExpressionMatch match = hitTargetRegex.match(message);
-            source = match.captured("source");
-            target = match.captured("target");
-            value = match.captured("damage").toInt();
-            damageType = match.captured("damageType");
-            isCritical = match.captured("hitType")==" Critical hit!";
-            isGlancing = match.captured("hitType")==" Glancing hit!";
-
-            //Replace "You" with player name.
-            if (source == "You")
-                source = player;
-
-            qDebug() << source << "hit" << target << "for" << value << "points of" << damageType << "damage";
+            t_damage *damage = new t_damage(timestamp, message.toStdString());
+            std::cout << damage->getSource() << " hit " << damage->getTarget() << " for " << damage->value << " points of " << damage->dType << " damage " << damage->hType <<std::endl;
         }
+
         else if (channel=="Your misses"){
             QRegularExpressionMatch match = missedRegex.match(message);
 
             source = player;
             target = match.captured("target");
 
-            qDebug() << source << "missed" << target;
-
+            std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
+            return false;
         }
         else
         {
-            qWarning() << "Unparsed log line:" << QString::fromStdString(logLine);
+            std::cerr << "Unparsed log line: " << logLine << std::endl;
+            return false;
         }
     }
-
+    else
+        std::cerr << "Malformed log line: " << logLine << std::endl;
+        return false;
 }
