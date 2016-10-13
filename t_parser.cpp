@@ -1,5 +1,6 @@
 #include "t_parser.h"
 #include "t_damage.h"
+#include "t_error.h"
 
 #include <QRegularExpression>
 #include <QRegularExpressionMatch>
@@ -29,7 +30,8 @@ t_event* t_parser::parseLine(const std::string &logLine)
         if (channel=="Other hit by other"||channel=="You hit other")
         {
             t_damage *damage = new t_damage(timestamp, message.toStdString());
-            std::cout << damage->getSource() << " hit " << damage->getTarget() << " for " << damage->getDamageValue() << " points of " << damage->getDamageType() << " damage " << damage->getHitType() <<std::endl;
+            return (t_event*)damage;
+            //std::cout << damage->getSource() << " hit " << damage->getTarget() << " for " << damage->getDamageValue() << " points of " << damage->getDamageType() << " damage " << damage->getHitType() <<std::endl;
         }
 
         else if (channel=="Your misses"){
@@ -44,10 +46,12 @@ t_event* t_parser::parseLine(const std::string &logLine)
         else
         {
             std::cerr << "Unparsed log line: " << logLine << std::endl;
-            return false;
+            t_error *err = new t_error();
+            return (t_event*)err;
         }
     }
     else
         std::cerr << "Malformed log line: " << logLine << std::endl;
-        return false;
+        t_error *err = new t_error();
+        return (t_event*)err;
 }
