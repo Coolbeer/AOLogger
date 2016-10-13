@@ -15,6 +15,11 @@ std::string t_event::getTarget(void)
     return target;
 }
 
+uint64_t t_event::getTimeStamp()
+{
+    return timeStamp;
+}
+
 void t_event::setSource(const std::string &newSource)
 {
     source = newSource;
@@ -23,4 +28,9 @@ void t_event::setSource(const std::string &newSource)
 void t_event::setTarget(const std::string &newTarget)
 {
     target = newTarget;
+}
+
+void t_event::setTimeStamp(const uint64_t &tStamp)
+{
+    timeStamp = tStamp;
 }

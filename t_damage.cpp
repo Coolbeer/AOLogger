@@ -32,11 +32,6 @@ k_event::k_type t_damage::type(void)
     return k_event::damage;
 }
 
-void t_damage::setTimeStamp(const uint64_t &tStamp)
-{
-    timeStamp = tStamp;
-}
-
 void t_damage::setDamageValue(const uint32_t &dVal)
 {
     value = dVal;
@@ -45,7 +40,7 @@ void t_damage::setDamageValue(const uint32_t &dVal)
 void t_damage::setDamageType(const std::string &damType)
 {
     if(damType == "melee")
-        dType = k_dmg::projectile;
+        dType = k_dmg::melee;
     else if(damType == "projectile")
         dType = k_dmg::projectile;
     else if(damType == "energy")
@@ -83,3 +78,54 @@ void t_damage::setHitType(const std::string &hitType)
         hType = k_hit::normal;
 
 }
+
+
+std::string t_damage::getDamageType()
+{
+    switch(dType)
+    {
+        case k_dmg::melee:
+            return "projectile";
+        case k_dmg::projectile:
+            return "projectile";
+        case k_dmg::energy:
+            return "energy";
+        case k_dmg::disease:
+            return "disease";
+        case k_dmg::chemical:
+            return "chemical";
+        case k_dmg::radiation:
+            return "radiation";
+        case k_dmg::cold:
+            return "cold";
+        case k_dmg::fire:
+            return "fire";
+        case k_dmg::fling:
+            return "fling";
+        case k_dmg::burst:
+            return "burst";
+        case k_dmg::fullAuto:
+            return "fullAuto";
+        default:
+            return "unknown";
+    }
+}
+
+uint32_t t_damage::getDamageValue()
+{
+    return value;
+}
+
+std::string t_damage::getHitType()
+{
+    switch(hType)
+    {
+        case k_hit::critical:
+            return "critical";
+        case k_hit::glancing:
+            return "glancing";
+        default:
+            return "normal";
+    }
+}
+

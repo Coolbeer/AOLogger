@@ -29,7 +29,7 @@ t_event* t_parser::parseLine(const std::string &logLine)
         if (channel=="Other hit by other"||channel=="You hit other")
         {
             t_damage *damage = new t_damage(timestamp, message.toStdString());
-            std::cout << damage->getSource() << " hit " << damage->getTarget() << " for " << damage->value << " points of " << damage->dType << " damage " << damage->hType <<std::endl;
+            std::cout << damage->getSource() << " hit " << damage->getTarget() << " for " << damage->getDamageValue() << " points of " << damage->getDamageType() << " damage " << damage->getHitType() <<std::endl;
         }
 
         else if (channel=="Your misses"){
