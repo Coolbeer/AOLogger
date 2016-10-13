@@ -27,9 +27,12 @@ void MainWindow::updateCaption(void)
     ui->label->setText("Open");
 
     QString hopp = inFile.readLine();
-    if(!hopp.isEmpty())
-        theLogParser.parseLine(hopp.toStdString());
-    ui->label->setText(ui->label->text() + hopp);
+    if(hopp.isEmpty())
+        return;
+    t_event *returnEvent = theLogParser.parseLine(hopp.toStdString());
+
+    if(returnEvent->type() == k_event::damage)
+        ui->label->setText(QString::number(static_cast<t_damage*>(returnEvent)->getDamageValue()));
 }
 
 void MainWindow::on_pushButton_clicked()

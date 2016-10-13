@@ -19,13 +19,15 @@ SOURCES += main.cpp\
     t_damage.cpp \
     t_parser.cpp \
     t_entities.cpp \
-    t_event.cpp
+    t_event.cpp \
+    t_error.cpp
 
 HEADERS  += mainwindow.h \
     t_entity.h \
     t_damage.h \
     t_parser.h \
     t_entities.h \
-    t_event.h
+    t_event.h \
+    t_error.h
 
 FORMS    += mainwindow.ui
