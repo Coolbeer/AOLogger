@@ -32,11 +32,6 @@ k_event::k_type t_damage::type(void)
     return k_event::damage;
 }
 
-void t_damage::setTimeStamp(const uint64_t &tStamp)
-{
-    timeStamp = tStamp;
-}
-
 void t_damage::setDamageValue(const uint32_t &dVal)
 {
     value = dVal;
@@ -134,7 +129,3 @@ std::string t_damage::getHitType()
     }
 }
 
-uint64_t t_damage::getTimeStamp()
-{
-    return timeStamp;
-}

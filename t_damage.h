@@ -26,15 +26,12 @@ class t_damage : public t_event
         void                setDamageType(const std::string &damType);
         void                setDamageValue(const uint32_t &dVal);
         void                setHitType(const std::string &hitType);
-        void                setTimeStamp(const uint64_t &tStamp);
 
         std::string         getDamageType(void);
         uint32_t            getDamageValue(void);
         std::string         getHitType(void);
-        uint64_t            getTimeStamp(void);
 
     private:
-        uint64_t            timeStamp = 0;
         uint32_t            value = 0;
         k_dmg::type dType = k_dmg::unknown;
         k_hit::type hType = k_hit::normal;
