@@ -19,16 +19,23 @@ namespace k_hit
 class t_damage : public t_event
 {
     public:
-        t_damage();
-        t_damage(uint32_t, std::string);
-        k_event::k_type type(void);
-        void setTimeStamp(const uint64_t &tStamp);
-        void setDamageValue(const uint32_t &dVal);
-        void setDamageType(const std::string &damType);
-        void setHitType(const std::string &hitType);
+                            t_damage();
+                            t_damage(uint32_t, std::string);
+        k_event::k_type     type(void);
 
-        uint64_t timeStamp = 0;
-        uint32_t value = 0;
+        void                setDamageType(const std::string &damType);
+        void                setDamageValue(const uint32_t &dVal);
+        void                setHitType(const std::string &hitType);
+        void                setTimeStamp(const uint64_t &tStamp);
+
+        std::string         getDamageType(void);
+        uint32_t            getDamageValue(void);
+        std::string         getHitType(void);
+        uint64_t            getTimeStamp(void);
+
+    private:
+        uint64_t            timeStamp = 0;
+        uint32_t            value = 0;
         k_dmg::type dType = k_dmg::unknown;
         k_hit::type hType = k_hit::normal;
 };
