@@ -12,7 +12,7 @@ void t_entities::setPlayerName(const std::string &pName)
 
 void t_entities::addEvent(t_event *newEvent)
 {
-    std::string whoDidWhat = newEvent.getSource();
+    std::string whoDidWhat = newEvent->getSource();
     //TODO: Lets find the player and add the event.
 
 /*

@@ -11,8 +11,10 @@ class t_entity
 {
     public:
         t_entity();
-        std::string name;
-        std::vector<t_damage> damageList;
+        void                    addEvent(t_event *theEvent);
+    private:
+        std::string             name;
+        std::vector<t_event> eventList;
 };
 
 #endif // T_ENTITY_H
