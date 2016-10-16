@@ -41,7 +41,8 @@ t_event* t_parser::parseLine(const std::string &logLine)
             target = match.captured("target");
 
             std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
-            return false;
+            t_error *err = new t_error();
+            return (t_event*)err;
         }
         else
         {

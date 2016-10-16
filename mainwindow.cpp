@@ -26,13 +26,15 @@ void MainWindow::updateCaption(void)
     }
     ui->label->setText("Open");
 
-    QString hopp = inFile.readLine();
-    if(hopp.isEmpty())
-        return;
-    t_event *returnEvent = theLogParser.parseLine(hopp.toStdString());
-
-    if(returnEvent->type() == k_event::damage)
-        ui->label->setText(QString::number(static_cast<t_damage*>(returnEvent)->getDamageValue()));
+    while(!inFile.atEnd())
+    {
+        QString hopp = inFile.readLine();
+        if(hopp.isEmpty())
+            return;
+        t_event *returnEvent = theLogParser.parseLine(hopp.toStdString());
+        if(returnEvent->type() != k_event::error)
+            entities.addEvent(returnEvent);
+    }
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -44,4 +46,5 @@ void MainWindow::on_pushButton_clicked()
     if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     inFile.seek(inFile.size());
+    entities.setPlayerName(ui->lineEdit_2->text().toStdString());
 }
