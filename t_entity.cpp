@@ -14,3 +14,8 @@ std::string t_entity::getName()
 {
     return name;
 }
+
+void t_entity::setName(const std::string &newName)
+{
+    name = newName;
+}

@@ -14,6 +14,7 @@ class t_entity
         t_entity();
         void                    addEvent(t_event *theEvent);
         std::string             getName(void);
+        void                    setName(const std::string &newName);
     private:
         std::string             name;
         std::vector<t_event>    eventList;

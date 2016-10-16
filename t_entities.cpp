@@ -21,6 +21,7 @@ void t_entities::addEvent(t_event *newEvent)
     {
         if(playerName == theEntities.at(i).getName())
         {
+            theEntities.at(i).addEvent(newEvent);
             return;
         }
     }
