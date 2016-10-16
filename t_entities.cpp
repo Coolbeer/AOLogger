@@ -25,4 +25,8 @@ void t_entities::addEvent(t_event *newEvent)
             return;
         }
     }
+    t_entity newEntity;
+    newEntity.setName(whoDidWhat);
+    newEntity.addEvent(newEvent);
+    theEntities.push_back(newEntity);
 }

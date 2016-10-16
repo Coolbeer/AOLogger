@@ -15,9 +15,10 @@ class t_entity
         void                    addEvent(t_event *theEvent);
         std::string             getName(void);
         void                    setName(const std::string &newName);
+        virtual                 ~t_entity(void) { };
     private:
         std::string             name;
-        std::vector<t_event>    eventList;
+        std::vector<t_event*>   eventList;
         t_damageContainer       totalDamage;
 
 };
