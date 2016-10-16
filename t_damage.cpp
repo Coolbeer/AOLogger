@@ -79,8 +79,12 @@ void t_damage::setHitType(const std::string &hitType)
 
 }
 
+k_dmg::type t_damage::getDamageType()
+{
+    return dType;
+}
 
-std::string t_damage::getDamageType()
+std::string t_damage::getDamageTypeString()
 {
     switch(dType)
     {
