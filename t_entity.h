@@ -13,6 +13,7 @@ class t_entity
     public:
         t_entity();
         void                    addEvent(t_event *theEvent);
+        std::string             getName(void);
     private:
         std::string             name;
         std::vector<t_event>    eventList;
