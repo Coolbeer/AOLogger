@@ -46,4 +46,5 @@ void MainWindow::on_pushButton_clicked()
     if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
     inFile.seek(inFile.size());
+    entities.setPlayerName(ui->lineEdit_2->text().toStdString());
 }
