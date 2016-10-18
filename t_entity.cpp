@@ -4,3 +4,8 @@ t_entity::t_entity()
 {
 
 }
+
+t_entity::t_entity(std::string name)
+{
+    this->name = name;
+}

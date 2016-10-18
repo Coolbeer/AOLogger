@@ -11,6 +11,8 @@ class t_entity
 {
     public:
         t_entity();
+        t_entity(std::string);
+
         std::string name;
         std::vector<t_damage> damageList;
 };
