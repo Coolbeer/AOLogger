@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFile>
+#include <QTimer>
 #include <QSettings>
 
 #include "t_parser.h"
@@ -20,12 +21,12 @@ class MainWindow : public QMainWindow
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
         QSettings *configuration;
+        QTimer *timer;
 
     private slots:
-        void on_pushButton_clicked();
+        void on_startButton_clicked();
+        void on_saveButton_clicked();
         void updateCaption(void);
-
-        void on_pushButton_2_clicked();
 
 private:
         Ui::MainWindow *ui;

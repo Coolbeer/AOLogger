@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QTimer>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
@@ -10,8 +9,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     this->configuration = new QSettings(QSettings::IniFormat, QSettings::UserScope, "PWAN", "AOLogger");
 
-    QTimer *timer = new QTimer();
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateCaption()));
+    this->timer = new QTimer();
 
     timer->start(1000);
 
@@ -29,10 +27,10 @@ void MainWindow::updateCaption(void)
 
  if(!inFile.isOpen())
     {
-        ui->label->setText("Not Open");
+        ui->eventList->addItem("File no longer open!!");
+        disconnect(this->timer, SIGNAL(timeout()), this, SLOT(updateCaption()));
         return;
     }
-    ui->label->setText("Open");
 
     while(!inFile.atEnd())
     {
@@ -41,23 +39,32 @@ void MainWindow::updateCaption(void)
             return;
         t_event *returnEvent = theLogParser.parseLine(hopp.simplified().toStdString());
         if(returnEvent->type() != k_event::error)
+        {
+            ui->eventList->addItem(QString::fromStdString(returnEvent->getMessage()));
             entities.addEvent(returnEvent);
+        }
     }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_startButton_clicked()
 {
     if(inFile.isOpen())
         inFile.close();
 
     inFile.setFileName(ui->logPath->text());
     if (!inFile.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        ui->eventList->addItem("Unable to open file!");
         return;
+    }
+
     inFile.seek(inFile.size());
     entities.setPlayerName(ui->playerName->text().toStdString());
+    connect(this->timer, SIGNAL(timeout()), this, SLOT(updateCaption()));
+    ui->eventList->addItem("File Opened");
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_saveButton_clicked()
 {
     this->configuration->setValue("player/logPath", ui->logPath->text());
     this->configuration->setValue("player/name", ui->playerName->text());

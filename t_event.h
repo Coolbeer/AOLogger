@@ -15,13 +15,17 @@ class t_event
         virtual k_event::k_type     type(void) = 0;
         std::string                 getSource(void);
         std::string                 getTarget(void);
+        std::string                 getMessage(void);
         uint64_t                    getTimeStamp(void);
         void                        setSource(const std::string &newSource);
         void                        setTarget(const std::string &newTarget);
         void                        setTimeStamp(const uint64_t &tStamp);
-    private:
+        void                        setMessage(const std::string &message);
+
+private:
         std::string                 source;
         std::string                 target;
+        std::string                 message;
         uint64_t                    timeStamp = 0;
 
 };
