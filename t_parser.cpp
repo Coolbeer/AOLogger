@@ -44,9 +44,15 @@ t_event* t_parser::parseLine(const std::string &logLine)
             std::string source = "You";
             std::string target = matches[1];
 
+<<<<<<< HEAD
             //TODO Add t_miss() event here
             std::cout << source << " missed " << target << std::endl;
             return false;
+=======
+            std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
+            t_error *err = new t_error();
+            return (t_event*)err;
+>>>>>>> origin/master
         }
         //Unparsed log line!
         else

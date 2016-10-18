@@ -27,7 +27,8 @@ class t_damage : public t_event
         void                setDamageValue(const uint32_t &dVal);
         void                setHitType(const std::string &hitType);
 
-        std::string         getDamageType(void);
+        k_dmg::type         getDamageType(void);
+        std::string         getDamageTypeString(void);
         uint32_t            getDamageValue(void);
         std::string         getHitType(void);
 
