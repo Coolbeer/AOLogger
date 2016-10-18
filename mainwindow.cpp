@@ -19,7 +19,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::updateCaption(void)
 {
-    if(!inFile.isOpen())
+
+ if(!inFile.isOpen())
     {
         ui->label->setText("Not Open");
         return;
@@ -29,7 +30,7 @@ void MainWindow::updateCaption(void)
     QString hopp = inFile.readLine();
     if(hopp.isEmpty())
         return;
-    t_event *returnEvent = theLogParser.parseLine(hopp.toStdString());
+    t_event *returnEvent = theLogParser.parseLine(hopp.simplified().toStdString());
 
     if(returnEvent->type() == k_event::damage)
         ui->label->setText(QString::number(static_cast<t_damage*>(returnEvent)->getDamageValue()));

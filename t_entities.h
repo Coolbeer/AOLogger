@@ -1,7 +1,7 @@
 #ifndef T_ENTITIES_H
 #define T_ENTITIES_H
 
-#include <map>
+#include <unordered_map>
 
 #include "t_entity.h"
 
@@ -14,7 +14,7 @@ class t_entities
     private:
         std::string playerName;
         std::vector<t_entity> theEntities;
-        std::map<std::string, t_entity> entityMap;
+        std::unordered_map<std::string, t_entity> entityMap;
 
 };
 

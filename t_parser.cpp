@@ -2,10 +2,9 @@
 #include "t_damage.h"
 #include "t_error.h"
 
-#include <QRegularExpression>
-#include <QRegularExpressionMatch>
-#include <QDebug>
 #include <iostream>
+#include <sstream>
+#include <regex>
 
 t_parser::t_parser()
 {
@@ -15,34 +14,41 @@ t_parser::t_parser()
 t_event* t_parser::parseLine(const std::string &logLine)
 {
     //Regular expression to find time stamp and channel
-    QRegularExpression timeChannelRegex(".+\"(.+)\",\"\",(\\d{10})](.+)");
-
+    std::regex timeChannelRegex(".+\"(.+)\",\"\",(\\d{10})](.+)");
     //Event spesific regexes
-    QRegularExpression missedRegex("You tried to hit (?<target>.+), but missed.");
+    std::regex missedRegex("You tried to hit (.+), but missed.");
 
-    QRegularExpressionMatch match = timeChannelRegex.match(QString::fromStdString(logLine));
+    std::smatch matches;
 
-    if (match.hasMatch()){
-        channel = match.captured(1);
-        timestamp = match.captured(2).toInt();
-        message = match.captured(3);
+    //Find time and channel
+    std::regex_match(logLine, matches, timeChannelRegex, std::regex_constants::match_not_eol);
+    if (matches.length()>0)
+    {
+        std::string channel = matches[1];
+        uint64_t timestamp;
+        std::stringstream(matches[2]) >> timestamp;
+        std::string message = matches[3];
 
-        if (channel=="Other hit by other"||channel=="You hit other")
+        //Damage event
+        if (channel == "Other hit by other"||channel == "You hit other")
         {
-            t_damage *damage = new t_damage(timestamp, message.toStdString());
+            t_damage *damage = new t_damage(timestamp, message);
+            std::cout << damage->getSource() << " hit " << damage->getTarget() << " for " << damage->getDamageValue() << " points of " << damage->getDamageType() << " damage " << damage->getHitType() <<std::endl;
             return (t_event*)damage;
-            //std::cout << damage->getSource() << " hit " << damage->getTarget() << " for " << damage->getDamageValue() << " points of " << damage->getDamageType() << " damage " << damage->getHitType() <<std::endl;
+
         }
+        //Miss event
+        else if (channel == "Your misses")
+        {
+            std::regex_match(message, matches, missedRegex);
+            std::string source = "You";
+            std::string target = matches[1];
 
-        else if (channel=="Your misses"){
-            QRegularExpressionMatch match = missedRegex.match(message);
-
-            source = player;
-            target = match.captured("target");
-
-            std::cout << source.toStdString() << " missed " << target.toStdString() << std::endl;
+            //TODO Add t_miss() event here
+            std::cout << source << " missed " << target << std::endl;
             return false;
         }
+        //Unparsed log line!
         else
         {
             std::cerr << "Unparsed log line: " << logLine << std::endl;
@@ -50,8 +56,11 @@ t_event* t_parser::parseLine(const std::string &logLine)
             return (t_event*)err;
         }
     }
+    //I don't know what this is, but it's not a valid log line!
     else
+    {
         std::cerr << "Malformed log line: " << logLine << std::endl;
         t_error *err = new t_error();
         return (t_event*)err;
+    }
 }
