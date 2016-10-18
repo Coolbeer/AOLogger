@@ -19,13 +19,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::updateCaption(void)
 {
-    if(!inFile.isOpen())
+
+ if(!inFile.isOpen())
     {
         ui->label->setText("Not Open");
         return;
     }
     ui->label->setText("Open");
 
+<<<<<<< HEAD
+    QString hopp = inFile.readLine();
+    if(hopp.isEmpty())
+        return;
+    t_event *returnEvent = theLogParser.parseLine(hopp.simplified().toStdString());
+
+    if(returnEvent->type() == k_event::damage)
+        ui->label->setText(QString::number(static_cast<t_damage*>(returnEvent)->getDamageValue()));
+=======
     while(!inFile.atEnd())
     {
         QString hopp = inFile.readLine();
@@ -35,6 +45,7 @@ void MainWindow::updateCaption(void)
         if(returnEvent->type() != k_event::error)
             entities.addEvent(returnEvent);
     }
+>>>>>>> origin/master
 }
 
 void MainWindow::on_pushButton_clicked()

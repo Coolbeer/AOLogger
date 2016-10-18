@@ -12,6 +12,17 @@ class t_entity
 {
     public:
         t_entity();
+<<<<<<< HEAD
+        t_entity(std::string);
+
+        std::string name;
+        std::vector<t_damage> damageGivenList;
+        std::vector<t_damage> damageTakenList;
+//        std::vector<t_heal> healGiven;
+//        std::vector<t_heal> healReceived;
+//        std::vector<t_loot> lootList;
+//        std::vector<t_error> errorList;
+=======
         void                    addEvent(t_event *theEvent);
         std::string             getName(void);
         void                    setName(const std::string &newName);
@@ -20,6 +31,7 @@ class t_entity
         std::string             name;
         std::vector<t_event*>   eventList;
         t_damageContainer       totalDamage;
+>>>>>>> origin/master
 
 };
 

@@ -5,6 +5,11 @@ t_entity::t_entity()
 
 }
 
+<<<<<<< HEAD
+t_entity::t_entity(std::string name)
+{
+    this->name = name;
+=======
 void  t_entity::addEvent(t_event *theEvent)
 {
     if(theEvent->type() != k_event::error)
@@ -21,4 +26,5 @@ std::string t_entity::getName()
 void t_entity::setName(const std::string &newName)
 {
     name = newName;
+>>>>>>> origin/master
 }
