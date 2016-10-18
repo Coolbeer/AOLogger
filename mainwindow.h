@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFile>
+#include <QSettings>
 
 #include "t_parser.h"
 #include "t_entities.h"
@@ -18,12 +19,15 @@ class MainWindow : public QMainWindow
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
+        QSettings *configuration;
 
     private slots:
         void on_pushButton_clicked();
         void updateCaption(void);
 
-    private:
+        void on_pushButton_2_clicked();
+
+private:
         Ui::MainWindow *ui;
         QFile inFile;
         t_parser theLogParser;
