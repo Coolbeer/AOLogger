@@ -20,6 +20,11 @@ uint64_t t_event::getTimeStamp()
     return timeStamp;
 }
 
+std::string t_event::getMessage(void)
+{
+    return message;
+}
+
 void t_event::setSource(const std::string &newSource)
 {
     source = newSource;
@@ -33,4 +38,9 @@ void t_event::setTarget(const std::string &newTarget)
 void t_event::setTimeStamp(const uint64_t &tStamp)
 {
     timeStamp = tStamp;
+}
+
+void t_event::setMessage(const std::string &message)
+{
+    this->message = message;
 }

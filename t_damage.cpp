@@ -14,6 +14,7 @@ t_damage::t_damage(uint32_t timestamp, std::string message)
     QRegularExpression hitTargetRegex("(?<source>.+) hit (?<target>.+) for (?<damage>\\d+) points of (?<damageType>\\w+) damage.\\s*(?<hitType>\\w*)");
     QRegularExpressionMatch match = hitTargetRegex.match(QString::fromStdString(message));
 
+    this->setMessage(message);
     this->setSource(match.captured("source").toStdString());
     this->setTarget(match.captured("target").toStdString());
     this->setTimeStamp(timestamp);
