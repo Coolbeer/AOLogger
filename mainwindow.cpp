@@ -2,19 +2,19 @@
 #include "ui_mainwindow.h"
 
 #include <iostream>
+#include <QFileDialog>
+#include <QStandardPaths>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     this->configuration = new QSettings(QSettings::IniFormat, QSettings::UserScope, "PWAN", "AOLogger");
-
-    this->timer = new QTimer();
-
-    timer->start(1000);
-
     ui->logPath->setText(this->configuration->value("player/logPath", "%LOCALAPPDATA%\\Funcom\\Anarchy Online").toString());
     ui->playerName->setText(this->configuration->value("player/name", "Playername").toString());
+
+    this->timer = new QTimer();
+    timer->start(1000);
 }
 
 MainWindow::~MainWindow()
@@ -46,6 +46,11 @@ void MainWindow::updateCaption(void)
     }
 }
 
+void MainWindow::addEventToList(std::string)
+{
+
+}
+
 void MainWindow::on_startButton_clicked()
 {
     if(inFile.isOpen())
@@ -70,4 +75,11 @@ void MainWindow::on_saveButton_clicked()
     this->configuration->setValue("player/name", ui->playerName->text());
     this->configuration->sync();
     std::cout << "Settings saved" << std::endl;
+}
+
+void MainWindow::on_findFile_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "Find log file", QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"\\..\\FunCom\\Anarchy Online", "Log.txt");
+    if (fileName != "")
+        ui->logPath->setText(fileName);
 }
