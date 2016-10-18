@@ -60,11 +60,22 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLineEdit" name="logPath">
-          <property name="text">
-           <string>C:\Users\regis\AppData\Local\Funcom\Anarchy Online\cd94a273\Anarchy Online Beta\Prefs\xBlueEagle\Char586965293\Chat\Windows\Window7\Log.txt</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QLineEdit" name="logPath">
+            <property name="text">
+             <string>C:\Users\regis\AppData\Local\Funcom\Anarchy Online\cd94a273\Anarchy Online Beta\Prefs\xBlueEagle\Char586965293\Chat\Windows\Window7\Log.txt</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="findFile">
+            <property name="text">
+             <string>Browse </string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -75,14 +86,14 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="saveButton">
-            <property name="text">
-             <string>Save</string>
-            </property>
-           </widget>
-          </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveButton">
+          <property name="text">
+           <string>Save</string>
+          </property>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer">

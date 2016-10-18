@@ -23,10 +23,15 @@ class MainWindow : public QMainWindow
         QSettings *configuration;
         QTimer *timer;
 
+    public slots:
+        void addEventToList(std::string);
+
     private slots:
         void on_startButton_clicked();
         void on_saveButton_clicked();
         void updateCaption(void);
+
+        void on_findFile_clicked();
 
 private:
         Ui::MainWindow *ui;
