@@ -19,7 +19,10 @@ class t_entity
         std::string             getName(void);
         void                    setName(const std::string &newName);
 
-private:
+//    signals:
+//        void                    updateEventListSignal(const std::string &message);
+
+    private:
         std::string             name;
         std::vector<t_event*>   eventList;
         t_damageContainer       totalDamage;

@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     t_entities.cpp \
     t_event.cpp \
     t_error.cpp \
-    t_damagecontainer.cpp
+    t_damagecontainer.cpp \
+    t_toon.cpp
 
 HEADERS  += mainwindow.h \
     t_entity.h \
@@ -30,6 +31,7 @@ HEADERS  += mainwindow.h \
     t_entities.h \
     t_event.h \
     t_error.h \
-    t_damagecontainer.h
+    t_damagecontainer.h \
+    t_toon.h
 
 FORMS    += mainwindow.ui

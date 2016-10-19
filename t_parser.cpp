@@ -46,14 +46,14 @@ t_event* t_parser::parseLine(const std::string &logLine)
 
             //TODO Add t_miss() event here
             std::cout << source << " missed " << target << std::endl;
-            t_error *err = new t_error();
+            t_error *err = new t_error("Missed event", "Need to parse misses. "+target);
             return (t_event*)err;
         }
         //Unparsed log line!
         else
         {
             std::cerr << "Unparsed log line: " << logLine << std::endl;
-            t_error *err = new t_error();
+            t_error *err = new t_error("t_parser", "Unparsed log line: "+logLine);
             return (t_event*)err;
         }
     }
@@ -61,7 +61,7 @@ t_event* t_parser::parseLine(const std::string &logLine)
     else
     {
         std::cerr << "Malformed log line: " << logLine << std::endl;
-        t_error *err = new t_error();
+        t_error *err = new t_error("t_parser", "Malformed log line: "+logLine);
         return (t_event*)err;
     }
 }

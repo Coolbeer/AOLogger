@@ -15,6 +15,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     this->timer = new QTimer();
     timer->start(1000);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -38,9 +40,13 @@ void MainWindow::updateCaption(void)
         if(hopp.isEmpty())
             return;
         t_event *returnEvent = theLogParser.parseLine(hopp.simplified().toStdString());
+
+        //Add event to the log
+        ui->eventList->addItem(QString::fromStdString(returnEvent->getMessage()));
+        ui->eventList->scrollToBottom();
+
         if(returnEvent->type() != k_event::error)
         {
-            ui->eventList->addItem(QString::fromStdString(returnEvent->getMessage()));
             entities.addEvent(returnEvent);
         }
     }
