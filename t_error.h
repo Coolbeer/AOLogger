@@ -6,7 +6,7 @@
 class t_error : t_event
 {
     public:
-        t_error();
+        t_error(const std::string &source, const std::string &message);
         k_event::k_type     type(void);
 
 };

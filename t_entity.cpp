@@ -16,6 +16,7 @@ void  t_entity::addEvent(t_event *theEvent)
         eventList.push_back(theEvent);
     if(theEvent->type() == k_event::damage)
         totalDamage.addDamageEvent(static_cast<t_damage*>(theEvent));
+
 }
 
 std::string t_entity::getName()
