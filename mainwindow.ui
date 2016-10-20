@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>874</width>
-    <height>627</height>
+    <width>948</width>
+    <height>595</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,44 +26,47 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>13</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>194</width>
-            <height>13</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Entities</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
          <widget class="QListWidget" name="entityList">
           <property name="minimumSize">
            <size>
-            <width>194</width>
+            <width>150</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>194</width>
+            <width>150</width>
             <height>16777215</height>
            </size>
           </property>
+          <item>
+           <property name="text">
+            <string>Corrupt Xan Len</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>The Beast</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>The Night Heart</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Bartender</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Guard</string>
+           </property>
+          </item>
          </widget>
         </item>
-        <item row="1" column="2" rowspan="3">
+        <item row="0" column="2" rowspan="2">
          <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
            <widget class="QGroupBox" name="graphItems">
@@ -177,39 +180,83 @@
           </item>
          </layout>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label">
-          <property name="maximumSize">
-           <size>
-            <width>194</width>
-            <height>13</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Players, pets and teams</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QListWidget" name="toonList">
+        <item row="1" column="0">
+         <widget class="QTreeWidget" name="teamTree">
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>222</height>
+            <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>194</width>
-            <height>222</height>
+            <width>150</width>
+            <height>200</height>
            </size>
           </property>
+          <column>
+           <property name="text">
+            <string>Team</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>Metametameta</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Harms</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Heals</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Hazes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Hides</string>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>Kadrya</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Falixmonia</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Xantrish</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>OmniTek</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Is your friend</string>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>Ophicus</string>
+           </property>
+          </item>
          </widget>
         </item>
-        <item row="1" column="1" rowspan="3">
+        <item row="0" column="1" rowspan="2">
          <widget class="QGraphicsView" name="graphicsView">
           <property name="maximumSize">
            <size>
@@ -320,7 +367,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>874</width>
+     <width>948</width>
      <height>21</height>
     </rect>
    </property>
