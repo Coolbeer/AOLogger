@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     t_event.cpp \
     t_error.cpp \
     t_damagecontainer.cpp \
-    t_toon.cpp
+    t_toon.cpp \
+    addtoondialog.cpp
 
 HEADERS  += mainwindow.h \
     t_entity.h \
@@ -32,6 +33,8 @@ HEADERS  += mainwindow.h \
     t_event.h \
     t_error.h \
     t_damagecontainer.h \
-    t_toon.h
+    t_toon.h \
+    addtoondialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addtoondialog.ui

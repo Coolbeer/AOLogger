@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "addtoondialog.h"
 
 #include <iostream>
 #include <QFileDialog>
@@ -9,9 +10,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 {
     ui->setupUi(this);
 
-    this->configuration = new QSettings(QSettings::IniFormat, QSettings::UserScope, "PWAN", "AOLogger");
-    ui->logPath->setText(this->configuration->value("player/logPath", "%LOCALAPPDATA%\\Funcom\\Anarchy Online").toString());
-    ui->playerName->setText(this->configuration->value("player/name", "Playername").toString());
+    readConfig();
 
     this->timer = new QTimer();
     timer->start(1000);
@@ -22,6 +21,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::readConfig()
+{
+    this->configuration = new QSettings(QSettings::IniFormat, QSettings::UserScope, "PWAN", "AOLogger");
+    ui->logPath->setText(this->configuration->value("player/logPath", "%LOCALAPPDATA%\\Funcom\\Anarchy Online").toString());
+    ui->playerName->setText(this->configuration->value("player/name", "Playername").toString());
 }
 
 void MainWindow::updateCaption(void)
@@ -69,7 +75,7 @@ void MainWindow::on_startButton_clicked()
         return;
     }
 
-    inFile.seek(inFile.size());
+//    inFile.seek(inFile.size());
     entities.setPlayerName(ui->playerName->text().toStdString());
     connect(this->timer, SIGNAL(timeout()), this, SLOT(updateCaption()));
     ui->eventList->addItem("File Opened");
@@ -88,4 +94,14 @@ void MainWindow::on_findFile_clicked()
     QString fileName = QFileDialog::getOpenFileName(this, "Find log file", QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation)+"\\..\\FunCom\\Anarchy Online", "Log.txt");
     if (fileName != "")
         ui->logPath->setText(fileName);
+}
+
+void MainWindow::on_addToon_clicked()
+{
+    addToonDialog dialog(this);
+    if(dialog.exec())
+    {
+        std::cout << dialog.fileName.toStdString() << std::endl;
+        std::cout << dialog.toonName.toStdString() << std::endl;
+    }
 }

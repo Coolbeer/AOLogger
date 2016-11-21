@@ -23,6 +23,8 @@ class MainWindow : public QMainWindow
         QSettings *configuration;
         QTimer *timer;
 
+        void readConfig();
+
     public slots:
         void addEventToList(std::string);
 
@@ -32,6 +34,8 @@ class MainWindow : public QMainWindow
         void updateCaption(void);
 
         void on_findFile_clicked();
+
+        void on_addToon_clicked();
 
 private:
         Ui::MainWindow *ui;
