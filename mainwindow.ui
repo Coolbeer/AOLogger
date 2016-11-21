@@ -11,10 +11,51 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>AO Logger - PlayerName</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="addToon">
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="deleteToon">
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
@@ -38,6 +79,18 @@
             <width>150</width>
             <height>16777215</height>
            </size>
+          </property>
+          <property name="dragEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="dragDropMode">
+           <enum>QAbstractItemView::DragDrop</enum>
+          </property>
+          <property name="defaultDropAction">
+           <enum>Qt::MoveAction</enum>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::MultiSelection</enum>
           </property>
           <item>
            <property name="text">
@@ -194,46 +247,32 @@
             <height>200</height>
            </size>
           </property>
+          <property name="dragEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="dragDropMode">
+           <enum>QAbstractItemView::DragDrop</enum>
+          </property>
+          <property name="defaultDropAction">
+           <enum>Qt::MoveAction</enum>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::MultiSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectItems</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>false</bool>
+          </property>
+          <property name="headerHidden">
+           <bool>false</bool>
+          </property>
           <column>
            <property name="text">
             <string>Team</string>
            </property>
           </column>
-          <item>
-           <property name="text">
-            <string>Metametameta</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Harms</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Heals</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Hazes</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Hides</string>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>Kadrya</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Falixmonia</string>
-           </property>
-          </item>
           <item>
            <property name="text">
             <string>Xantrish</string>
@@ -252,6 +291,41 @@
           <item>
            <property name="text">
             <string>Ophicus</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Metametameta</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Hides</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Heals</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Hazes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Harms</string>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>Kadrya</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Falixmonia</string>
            </property>
           </item>
          </widget>
