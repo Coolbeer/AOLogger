@@ -37,6 +37,8 @@ class MainWindow : public QMainWindow
 
         void on_addToon_clicked();
 
+        void on_toonSelector_currentIndexChanged(const QString &arg1);
+
 private:
         Ui::MainWindow *ui;
         QFile inFile;

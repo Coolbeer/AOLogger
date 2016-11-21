@@ -5,6 +5,7 @@
 #include <iostream>
 #include <QFileDialog>
 #include <QStandardPaths>
+#include <QStringList>
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -28,6 +29,14 @@ void MainWindow::readConfig()
     this->configuration = new QSettings(QSettings::IniFormat, QSettings::UserScope, "PWAN", "AOLogger");
     ui->logPath->setText(this->configuration->value("player/logPath", "%LOCALAPPDATA%\\Funcom\\Anarchy Online").toString());
     ui->playerName->setText(this->configuration->value("player/name", "Playername").toString());
+
+    configuration->beginGroup("toons");
+    QStringList toons = configuration->childGroups();
+    ui->toonSelector->addItem("Select toon from list");
+    foreach (QString toon, toons)
+    {
+        ui->toonSelector->addItem(toon);
+    }
 }
 
 void MainWindow::updateCaption(void)
@@ -101,7 +110,26 @@ void MainWindow::on_addToon_clicked()
     addToonDialog dialog(this);
     if(dialog.exec())
     {
+        this->configuration->beginGroup("toons");
+        this->configuration->beginGroup(dialog.toonName);
+        this->configuration->setValue("logPath", dialog.fileName);
+        this->configuration->endGroup();
+        this->configuration->endGroup();
         std::cout << dialog.fileName.toStdString() << std::endl;
         std::cout << dialog.toonName.toStdString() << std::endl;
+        ui->toonSelector->addItem(dialog.toonName);
+    }
+}
+
+void MainWindow::on_toonSelector_currentIndexChanged(const QString &arg1)
+{
+    if(arg1 != "Select toon from list")
+    {
+        this->configuration = new QSettings(QSettings::IniFormat, QSettings::UserScope, "PWAN", "AOLogger");
+    //    this->configuration->beginGroup("toons");
+    //    this->configuration->beginGroup(arg1);
+        ui->logPath->setText(this->configuration->value("toons/"+arg1+"/logPath").toString());
+    //    this->configuration->endGroup();
+    //    this->configuration->endGroup();
     }
 }
